@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   AiOutlineArrowLeft,
@@ -28,6 +28,11 @@ export default function ForgotPasswordPage() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("error");
+  const [copyrightYear, setCopyrightYear] = useState(null);
+
+  useEffect(() => {
+    setCopyrightYear(new Date().getFullYear());
+  }, []);
 
   function showMessage(text, type = "error") {
     setMessage(text);
@@ -660,7 +665,7 @@ export default function ForgotPasswordPage() {
       </section>
 
       <footer className="mx-auto mt-8 max-w-5xl text-center text-xs text-gray-400">
-        © {new Date().getFullYear()} Jobol Market. All rights reserved.
+        © {copyrightYear} Jobol Market. All rights reserved.
       </footer>
     </main>
   );

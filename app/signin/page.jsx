@@ -31,7 +31,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 
-import { auth } from "@/config/firebase";
+import { getFirebaseAuth } from "@/config/firebase";
 
 export default function SignInPage() {
   const router = useRouter();
@@ -103,7 +103,7 @@ export default function SignInPage() {
 
     try {
       const userCredential = await signInWithEmailAndPassword(
-        auth,
+        getFirebaseAuth(),
         formData.email.trim(),
         formData.password
       );
@@ -138,6 +138,10 @@ export default function SignInPage() {
           );
           break;
 
+        case "auth/invalid-api-key":
+          setError("Sign-in is not configured. Please contact the administrator.");
+          break;
+
         default:
           setError("Unable to sign in. Please try again.");
       }
@@ -152,7 +156,7 @@ export default function SignInPage() {
 
     try {
       const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(getFirebaseAuth(), provider);
 
       handleSuccessfulSignIn(result.user);
     } catch (err) {
@@ -179,6 +183,10 @@ export default function SignInPage() {
           setError(
             "This domain is not authorized for Google sign-in in Firebase."
           );
+          break;
+
+        case "auth/invalid-api-key":
+          setError("Sign-in is not configured. Please contact the administrator.");
           break;
 
         default:
