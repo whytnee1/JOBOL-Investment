@@ -15,7 +15,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
  adapter: FirestoreAdapter({
     credential: cert({
-      projectId: process.env.AUTH_FIREBASE_PROJECT_ID,
+      projectId: jobol-investments,
       clientEmail: process.env.AUTH_FIREBASE_CLIENT_EMAIL,
       privateKey: process.env.AUTH_FIREBASE_PRIVATE_KEY,
     }),
