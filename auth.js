@@ -6,11 +6,10 @@ import { cert } from "firebase-admin/app"
  
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
- Google({
-  clientId: process.env.AUTH_GOOGLE_ID,
-  clientSecret: process.env.AUTH_GOOGLE_SECRET,
-  allowDangerousEmailAccountLinking: true,
-})
+  Google({
+    clientId: process.env.AUTH_GOOGLE_ID,
+    clientSecret: process.env.AUTH_GOOGLE_SECRET
+  })
 ],
 
  adapter: FirestoreAdapter({
