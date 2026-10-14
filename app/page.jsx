@@ -177,41 +177,50 @@ export default function Home() {
 
     return () => window.removeEventListener("storage", updateCount);
   }, []);
+  
+// Save to localStorage WITHOUT redirecting
+const handleAddToCart = (product) => {
+  const confirmed = window.confirm(
+    `Do you want to add "${product.name}" to your cart?`
+  );
 
-  // Save to localStorage WITHOUT redirecting
-  const handleAddToCart = (product) => {
-    let existingCart = [];
+  // Cancel adding the item if the user clicks Cancel
+  if (!confirmed) {
+    return;
+  }
 
-    try {
-      existingCart = JSON.parse(localStorage.getItem("jobol_cart")) || [];
-    } catch (error) {
-      console.error("Could not read cart:", error);
-    }
+  let existingCart = [];
 
-    const index = existingCart.findIndex(
-      (item) => item.id === product.id
-    );
+  try {
+    existingCart = JSON.parse(localStorage.getItem("jobol_cart")) || [];
+  } catch (error) {
+    console.error("Could not read cart:", error);
+  }
 
-    if (index > -1) {
-      existingCart[index].quantity =
-        (existingCart[index].quantity || 1) + 1;
-    } else {
-      existingCart.push({
-        id: product.id,
-        name: product.name,
-        unitPrice: "",
-        quantity: 1,
-        unit: product.unit || "basket",
-        image: product.image,
-      });
-    }
+  const index = existingCart.findIndex(
+    (item) => item.id === product.id
+  );
 
-    localStorage.setItem("jobol_cart", JSON.stringify(existingCart));
+  if (index > -1) {
+    existingCart[index].quantity =
+      (existingCart[index].quantity || 1) + 1;
+  } else {
+    existingCart.push({
+      id: product.id,
+      name: product.name,
+      unitPrice: "",
+      quantity: 1,
+      unit: product.unit || "basket",
+      image: product.image,
+    });
+  }
 
-    setCartCount(existingCart.length);
+  localStorage.setItem("jobol_cart", JSON.stringify(existingCart));
 
-    alert(`"${product.name}" added to your cart!`);
-  };
+  setCartCount(existingCart.length);
+
+  alert(`"${product.name}" added to your cart!`);
+};
 
   const toggleFavorite = (id) => {
     setFavorites((prev) => ({
@@ -287,19 +296,19 @@ export default function Home() {
               {/* Brand Logo & Location Modal Trigger */}
               <div className="flex items-center justify-between w-full md:w-auto gap-4">
                 <Link href="/" className="flex items-center gap-3 group">
-                  <div className="w-10 h-10 rounded-xl overflow-hidden bg-white shadow-xs borde borde-gray-100 flex items-center justify-center shrink-0">
-                    <img
-                      src="/JIS.png"
-                      alt="JIS Logo"
-                      className="w-2 h-2 object-cover"
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none";
-                      }}
-                    />
-                  </div>
-
+               
+<div className="block md:hidden w-10 h-10 rounded-xl overflow-hidden bg-white shadow-xs border border-gray-100 flex items-center justify-center shrink-0">
+  <img
+    src="/JIS.png"
+    alt="JIS Logo"
+    className="w-14 h-12 object-cover"
+    onError={(e) => {
+      e.currentTarget.style.display = "none";
+    }}
+  />
+</div>
                   <span className="text-xl font-arial font-black tracking-tight text-blue-900">
-                   NAIJA<span className="text-red-600">MARKET</span>
+                   JOBOL<span className="text-red-600">MARKET</span>
                   </span>
                 </Link>
 

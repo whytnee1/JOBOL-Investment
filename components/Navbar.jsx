@@ -216,7 +216,7 @@ export default function Navbar() {
               />
             </div>
             <span className="text-2xl font-black font-extrabold tracking-tight text-blue-900 group-hover:text-red-600 transition-colors">
-              JOBOL<span className="text-red-600 group-hover:text-blue-600"></span>
+              {/* JOBOL<span className="text-red-600 group-hover:text-blue-600"></span> */}
             </span>
           </Link>
 
