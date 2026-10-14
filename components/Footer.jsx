@@ -1,6 +1,7 @@
+
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   AiOutlineEnvironment,
@@ -14,6 +15,12 @@ import {
 } from "react-icons/ai";
 
 export default function Footer() {
+  const [year, setYear] = useState(null);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   const whatsappNumber = "2348123377017";
   const whatsappUrl = `https://wa.me/${whatsappNumber}`;
   const phoneNumber = "08123377017";
@@ -23,27 +30,21 @@ export default function Footer() {
       className="relative isolate w-full overflow-hidden bg-[#071329] text-white"
       style={{ fontFamily: "Arial, Helvetica, sans-serif" }}
     >
-      {/* =====================================================
-          ANIMATED BACKGROUND
-      ====================================================== */}
+      {/* ANIMATED BACKGROUND */}
 
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        {/* Red glow */}
         <div
           className="absolute -left-32 -top-32 h-72 w-72 rounded-full bg-red-600/20 blur-3xl sm:h-96 sm:w-96"
           style={{ animation: "footerFloat 10s ease-in-out infinite" }}
         />
 
-        {/* Blue glow */}
         <div
           className="absolute -right-32 top-20 h-72 w-72 rounded-full bg-blue-600/20 blur-3xl sm:h-96 sm:w-96"
           style={{ animation: "footerFloat 12s ease-in-out infinite reverse" }}
         />
 
-        {/* Bottom accent */}
         <div className="absolute -bottom-40 left-1/3 h-80 w-80 rounded-full bg-red-700/10 blur-3xl" />
 
-        {/* Subtle grid */}
         <div
           className="absolute inset-0 opacity-[0.035]"
           style={{
@@ -54,9 +55,7 @@ export default function Footer() {
         />
       </div>
 
-      {/* =====================================================
-          TOP ACCENT BAR
-      ====================================================== */}
+      {/* TOP ACCENT BAR */}
 
       <div className="relative h-1.5 w-full overflow-hidden bg-white/5">
         <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-red-700 via-red-500 to-red-400" />
@@ -69,32 +68,22 @@ export default function Footer() {
         />
       </div>
 
-      {/* =====================================================
-          MAIN FOOTER CONTENT
-      ====================================================== */}
+      {/* MAIN FOOTER CONTENT */}
 
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        {/* Company introduction and contact cards */}
-
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-10">
-          {/* =================================================
-              BRAND SECTION
-          ================================================== */}
+          {/* BRAND SECTION */}
 
           <div
             className="space-y-6 lg:col-span-5"
             style={{ animation: "footerFadeUp 0.8s ease-out both" }}
           >
-            {/* Logo and name */}
-
             <Link
               href="/"
               className="group inline-flex max-w-full items-center gap-4 rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
               aria-label="JOBOL Investments Service home"
             >
               <div className="relative shrink-0">
-                {/* Animated outer border */}
-
                 <div
                   className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-red-500 via-white/40 to-blue-500 opacity-70 blur-[2px] transition duration-500 group-hover:opacity-100"
                   aria-hidden="true"
@@ -131,15 +120,13 @@ export default function Footer() {
               </div>
             </Link>
 
-            {/* Brand description */}
-
             <p className="max-w-md text-sm leading-7 text-slate-300 sm:text-base">
               Your trusted partner for quality products, reliable services,
               and prompt nationwide delivery. We are committed to delivering
               dependable service and a better customer experience.
             </p>
 
-            {/* Trust indicators */}
+            {/* TRUST INDICATORS */}
 
             <div className="grid max-w-md grid-cols-2 gap-3">
               <div className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-3 transition-all duration-300 hover:-translate-y-1 hover:border-red-400/40 hover:bg-red-500/[0.08]">
@@ -174,9 +161,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* =================================================
-              OFFICE ADDRESS
-          ================================================== */}
+          {/* OFFICE ADDRESS */}
 
           <div
             className="lg:col-span-3"
@@ -223,9 +208,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* =================================================
-              CONTACT SECTION
-          ================================================== */}
+          {/* CONTACT SECTION */}
 
           <div
             className="lg:col-span-4"
@@ -248,7 +231,7 @@ export default function Footer() {
             </div>
 
             <div className="space-y-4">
-              {/* Phone card */}
+              {/* PHONE CARD */}
 
               <a
                 href={`tel:${phoneNumber}`}
@@ -271,7 +254,7 @@ export default function Footer() {
                 <AiOutlineArrowRight className="shrink-0 text-lg text-slate-500 transition-all duration-300 group-hover:translate-x-1 group-hover:text-blue-300" />
               </a>
 
-              {/* WhatsApp card */}
+              {/* WHATSAPP CARD */}
 
               <a
                 href={whatsappUrl}
@@ -299,7 +282,7 @@ export default function Footer() {
                 <AiOutlineArrowRight className="shrink-0 text-lg text-slate-500 transition-all duration-300 group-hover:translate-x-1 group-hover:text-emerald-300" />
               </a>
 
-              {/* Terms link */}
+              {/* TERMS LINK */}
 
               <Link
                 href="/terms"
@@ -325,17 +308,13 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* =====================================================
-            MOVING DELIVERY TRUCK ANIMATION
-        ====================================================== */}
+        {/* MOVING DELIVERY TRUCK ANIMATION */}
 
         <div
           className="relative mt-12 overflow-hidden border-t border-white/10 pt-6 sm:mt-14"
           aria-label="Animated delivery truck representing nationwide delivery"
           role="img"
         >
-          {/* Road label */}
-
           <div className="mb-3 flex items-center justify-between gap-3">
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 sm:text-xs">
               JOBOL Nationwide Delivery
@@ -347,18 +326,10 @@ export default function Footer() {
             </span>
           </div>
 
-          {/* Road and truck track */}
-
           <div className="relative h-[90px] w-full overflow-hidden">
-            {/* Distant road lights */}
-
             <div className="absolute inset-x-0 bottom-[14px] h-[2px] bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />
 
-            {/* Road */}
-
             <div className="absolute inset-x-0 bottom-[12px] h-[5px] rounded-full bg-slate-700/80" />
-
-            {/* Road markings */}
 
             <div className="absolute inset-x-0 bottom-[13px] flex justify-around overflow-hidden">
               {Array.from({ length: 12 }).map((_, index) => (
@@ -369,7 +340,7 @@ export default function Footer() {
               ))}
             </div>
 
-            {/* Moving truck */}
+            {/* MOVING TRUCK */}
 
             <div
               className="absolute bottom-[15px] left-0 z-10"
@@ -379,50 +350,36 @@ export default function Footer() {
               }}
             >
               <div className="relative h-[62px] w-[108px] sm:h-[72px] sm:w-[132px]">
-                {/* Truck body */}
+                {/* TRUCK BODY */}
 
                 <div className="absolute bottom-[12px] left-0 h-[34px] w-[68px] rounded-t-md rounded-bl-md border border-red-300/60 bg-gradient-to-br from-red-500 to-red-800 shadow-[0_0_18px_rgba(239,68,68,0.2)] sm:bottom-[14px] sm:h-[39px] sm:w-[82px]">
-                  {/* Cargo stripes */}
-
                   <div className="absolute inset-y-0 left-2 w-[3px] bg-white/20" />
                   <div className="absolute inset-y-0 left-4 w-[3px] bg-white/20" />
-
-                  {/* Company initials */}
 
                   <span className="absolute inset-0 flex items-center justify-center pl-4 text-[10px] font-black tracking-wider text-white sm:text-xs">
                     JOBOL
                   </span>
 
-                  {/* Cargo shine */}
-
                   <div className="absolute inset-x-0 top-0 h-1 rounded-t bg-white/30" />
                 </div>
 
-                {/* Truck cabin */}
+                {/* TRUCK CABIN */}
 
                 <div className="absolute bottom-[12px] right-0 h-[28px] w-[35px] rounded-tr-lg border border-blue-300/60 bg-gradient-to-br from-blue-400 to-blue-700 sm:bottom-[14px] sm:h-[32px] sm:w-[42px]">
-                  {/* Windscreen */}
-
                   <div className="absolute right-[4px] top-[4px] h-[12px] w-[15px] rounded-sm border border-white/40 bg-sky-200/90 sm:h-[14px] sm:w-[19px]" />
 
-                  {/* Cabin door */}
-
                   <div className="absolute bottom-[3px] left-[4px] h-[10px] w-[10px] rounded-sm border border-white/30 bg-blue-300/40" />
-
-                  {/* Headlight */}
 
                   <div className="absolute -right-[2px] bottom-[3px] h-[5px] w-[4px] rounded-r bg-yellow-200 shadow-[0_0_7px_rgba(253,224,71,0.9)]" />
                 </div>
 
-                {/* Front bumper */}
+                {/* BUMPERS */}
 
                 <div className="absolute bottom-[12px] -right-[2px] h-[5px] w-[9px] rounded-r bg-slate-300 sm:bottom-[14px]" />
 
-                {/* Back bumper */}
-
                 <div className="absolute bottom-[15px] -left-[3px] h-[5px] w-[6px] rounded-l bg-slate-400 sm:bottom-[17px]" />
 
-                {/* Rear wheel */}
+                {/* REAR WHEEL */}
 
                 <div className="absolute bottom-[1px] left-[12px] flex h-[20px] w-[20px] items-center justify-center rounded-full border-[3px] border-slate-500 bg-slate-950 sm:bottom-[2px] sm:left-[17px] sm:h-[22px] sm:w-[22px]">
                   <div
@@ -431,7 +388,7 @@ export default function Footer() {
                   />
                 </div>
 
-                {/* Front wheel */}
+                {/* FRONT WHEEL */}
 
                 <div className="absolute bottom-[1px] right-[7px] flex h-[20px] w-[20px] items-center justify-center rounded-full border-[3px] border-slate-500 bg-slate-950 sm:bottom-[2px] sm:right-[11px] sm:h-[22px] sm:w-[22px]">
                   <div
@@ -440,13 +397,13 @@ export default function Footer() {
                   />
                 </div>
 
-                {/* Ground shadow */}
+                {/* GROUND SHADOW */}
 
                 <div className="absolute -bottom-[3px] left-2 right-1 h-2 rounded-full bg-black/30 blur-sm" />
               </div>
             </div>
 
-            {/* Destination marker */}
+            {/* DESTINATION MARKER */}
 
             <div className="absolute bottom-[18px] right-2 flex flex-col items-center sm:right-5">
               <AiOutlineEnvironment className="text-xl text-red-400 drop-shadow-[0_0_6px_rgba(248,113,113,0.7)] sm:text-2xl" />
@@ -462,14 +419,12 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* =================================================
-            COPYRIGHT
-        ================================================== */}
+        {/* COPYRIGHT */}
 
         <div className="mt-8 border-t border-white/10 pt-6 sm:mt-10 sm:pt-8">
           <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
             <p className="text-xs leading-6 text-slate-400 sm:text-sm">
-              © {new Date().getFullYear()}{" "}
+              © {year ?? ""}{" "}
               <span className="font-bold text-white">
                 JOBOL Investments Service
               </span>
@@ -501,9 +456,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* =====================================================
-          ANIMATION KEYFRAMES
-      ====================================================== */}
+      {/* ANIMATION KEYFRAMES */}
 
       <style jsx>{`
         @keyframes footerFadeUp {
@@ -549,8 +502,6 @@ export default function Footer() {
           }
         }
 
-        /* Truck moves across the available footer width. */
-
         @keyframes truckDrive {
           0% {
             transform: translateX(-140px);
@@ -560,8 +511,6 @@ export default function Footer() {
             transform: translateX(calc(100vw + 160px));
           }
         }
-
-        /* Truck wheels rotate while it drives. */
 
         @keyframes wheelSpin {
           from {
@@ -587,3 +536,4 @@ export default function Footer() {
     </footer>
   );
 }
+
